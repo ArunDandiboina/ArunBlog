@@ -1,5 +1,6 @@
 import datetime
 import smtplib
+from dotenv import load_dotenv
 import os
 from datetime import date, timedelta
 from flask import Flask, abort, render_template, redirect, url_for, flash, request, session
@@ -16,7 +17,7 @@ from sqlalchemy.orm import relationship
 # Import your forms from the forms.py
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 
-
+load_dotenv()
 '''
 Make sure the required packages are installed: 
 Open the Terminal in PyCharm (bottom left). 
@@ -33,6 +34,7 @@ year = datetime.datetime.now().year
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
+print(os.environ.get('FLASK_KEY'))
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
 ckeditor = CKEditor(app)
 Bootstrap5(app)
